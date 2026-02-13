@@ -1,67 +1,116 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Para Ti 💖</title>
+<meta charset="UTF-8">
+<title>Para Ti ❤️</title>
 
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-            background: linear-gradient(to right, #ff4e50, #fc913a);
-            font-family: Arial, sans-serif;
-            text-align: center;
-            color: white;
-        }
+<style>
+body {
+    margin: 0;
+    overflow: hidden;
+    background: radial-gradient(circle at center, #ff6b81, #8e44ad);
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    color: white;
+}
 
-        h1 {
-            margin-top: 150px;
-            font-size: 40px;
-            position: relative;
-            z-index: 2;
-        }
+/* Mensaje principal */
+.container {
+    position: relative;
+    z-index: 2;
+    margin-top: 18vh;
+}
 
-        button {
-            padding: 15px 30px;
-            font-size: 20px;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            margin: 20px;
-            position: relative;
-            z-index: 2;
-        }
+h1 {
+    font-size: 42px;
+    text-shadow: 0 0 15px rgba(255,255,255,0.6);
+}
 
-        .yes {
-            background-color: #00ff88;
-        }
+button {
+    padding: 15px 35px;
+    font-size: 20px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 20px;
+    transition: 0.3s;
+}
 
-        .no {
-            background-color: #ff0000;
-            position: absolute;
-        }
+.yes {
+    background: #2ecc71;
+    box-shadow: 0 0 15px #2ecc71;
+}
 
-        /* 🌸 Flores animadas */
-        .flower {
-            position: absolute;
-            top: -50px;
-            font-size: 30px;
-            animation: fall linear infinite;
-        }
+.yes:hover {
+    transform: scale(1.1);
+}
 
-        @keyframes fall {
-            to {
-                transform: translateY(100vh);
-            }
-        }
-    </style>
+.no {
+    background: #e74c3c;
+    position: absolute;
+}
+
+/* Rosa flotando */
+.rose {
+    position: absolute;
+    font-size: 80px;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: float 4s ease-in-out infinite;
+    opacity: 0.9;
+}
+
+@keyframes float {
+    0% { transform: translateX(-50%) translateY(0px); }
+    50% { transform: translateX(-50%) translateY(-20px); }
+    100% { transform: translateX(-50%) translateY(0px); }
+}
+
+/* Corazones mágicos */
+.heart {
+    position: absolute;
+    color: #ffdde1;
+    font-size: 20px;
+    animation: rise 5s linear infinite;
+}
+
+@keyframes rise {
+    0% { transform: translateY(100vh); opacity: 1; }
+    100% { transform: translateY(-10vh); opacity: 0; }
+}
+
+/* Pantalla final */
+.final {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(to top, #ff416c, #ff4b2b);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    text-align: center;
+    padding: 20px;
+    display: none;
+}
+</style>
 </head>
 
 <body>
 
-<h1>🌹 ¿Puedo ser tu San Valentín este 14 de febrero? 🌹</h1>
+<div class="container">
+    <h1>🌹 ¿Quieres ser mi San Valentín este 14 de febrero? 🌹</h1>
+    <button class="yes" onclick="aceptar()">Sí ❤️</button>
+    <button class="no" onmouseover="mover(this)">No 😜</button>
+</div>
 
-<button class="yes" onclick="alert('Sabía que dirías que sí 😍 Te amo ❤️')">Sí ❤️</button>
-<button class="no" onmouseover="mover(this)">No 😜</button>
+<div class="rose">🌹</div>
+
+<div class="final" id="final">
+    💖 Sabía que dirías que sí... <br><br>
+    Prometo hacerte el 14 más especial de tu vida 🌹✨ <br><br>
+    Te amo ❤️
+</div>
 
 <script>
 function mover(boton){
@@ -69,21 +118,25 @@ function mover(boton){
     boton.style.left = Math.random()*400 + "px";
 }
 
-// Crear flores animadas
-function crearFlor(){
-    const flor = document.createElement("div");
-    flor.classList.add("flower");
-    flor.innerHTML = "🌸";
-    flor.style.left = Math.random() * 100 + "vw";
-    flor.style.animationDuration = (Math.random() * 3 + 3) + "s";
-    document.body.appendChild(flor);
-
-    setTimeout(() => {
-        flor.remove();
-    }, 6000);
+function aceptar(){
+    document.getElementById("final").style.display = "flex";
 }
 
-setInterval(crearFlor, 300);
+// Corazones flotando
+function crearCorazon(){
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.animationDuration = (Math.random()*3 + 2) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+}
+
+setInterval(crearCorazon, 300);
 </script>
 
 </body>
