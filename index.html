@@ -1,37 +1,64 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Para Ti ❤️</title>
+    <title>Para Ti 💖</title>
+
     <style>
         body {
+            margin: 0;
+            overflow: hidden;
             background: linear-gradient(to right, #ff4e50, #fc913a);
+            font-family: Arial, sans-serif;
             text-align: center;
-            font-family: Arial;
             color: white;
-            padding-top: 100px;
         }
+
         h1 {
-            font-size: 50px;
+            margin-top: 150px;
+            font-size: 40px;
+            position: relative;
+            z-index: 2;
         }
+
         button {
             padding: 15px 30px;
             font-size: 20px;
             border: none;
-            border-radius: 20px;
+            border-radius: 25px;
             cursor: pointer;
+            margin: 20px;
+            position: relative;
+            z-index: 2;
         }
+
         .yes {
             background-color: #00ff88;
         }
+
         .no {
             background-color: #ff0000;
             position: absolute;
         }
+
+        /* 🌸 Flores animadas */
+        .flower {
+            position: absolute;
+            top: -50px;
+            font-size: 30px;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
     </style>
 </head>
+
 <body>
 
-<h1>💖 ¿Quieres ser mi San Valentín este 14 de febrero? 💖</h1>
+<h1>🌹 ¿Puedo ser tu San Valentín este 14 de febrero? 🌹</h1>
 
 <button class="yes" onclick="alert('Sabía que dirías que sí 😍 Te amo ❤️')">Sí ❤️</button>
 <button class="no" onmouseover="mover(this)">No 😜</button>
@@ -41,6 +68,22 @@ function mover(boton){
     boton.style.top = Math.random()*400 + "px";
     boton.style.left = Math.random()*400 + "px";
 }
+
+// Crear flores animadas
+function crearFlor(){
+    const flor = document.createElement("div");
+    flor.classList.add("flower");
+    flor.innerHTML = "🌸";
+    flor.style.left = Math.random() * 100 + "vw";
+    flor.style.animationDuration = (Math.random() * 3 + 3) + "s";
+    document.body.appendChild(flor);
+
+    setTimeout(() => {
+        flor.remove();
+    }, 6000);
+}
+
+setInterval(crearFlor, 300);
 </script>
 
 </body>
